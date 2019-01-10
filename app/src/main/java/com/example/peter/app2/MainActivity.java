@@ -10,23 +10,11 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.TextView;
 
-import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.FormBody;
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,13 +27,14 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String> mPlans = new ArrayList<>();
 
     // Dates
+    private Calendar nCalendar = Calendar.getInstance();
+    private Calendar calThisDate =  Calendar.getInstance();
 
 
     // Others
-    private String folderolURL = "http://www.folderol.dk/";
-    private Calendar nCalendar = Calendar.getInstance();
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggleButton;
+    private TextView recHeader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "onCreate: Created");
         mDrawerLayout = findViewById(R.id.drawerLayout_nav);
         mToggleButton = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.drawerToggleOpen, R.string.drawerToggleClose);
-
+        recHeader = findViewById(R.id.cal_header);
         mDrawerLayout.addDrawerListener(mToggleButton);
         mToggleButton.syncState();
 
@@ -76,38 +65,19 @@ public class MainActivity extends AppCompatActivity {
     private void initContentArrays()
     {
         Log.d(TAG, "initContentArrays: Making Arrays");
-
+        nCalendar.set(Calendar.DAY_OF_YEAR, 1);
         // Antal dato'er der skal laves i kalenderen
         int antal = 365;
-        for(int i = 0; i < antal; i++){
+        for(int i = 1; i <= antal; i++){
 
             // Dato
             mDates.add(nCalendar.get(Calendar.DATE) + "");
 
             // Ugedag
-            switch (nCalendar.get(Calendar.DAY_OF_WEEK)) {
-                case Calendar.SUNDAY:
-                    mDays.add("Sun");
-                    break;
-                case Calendar.MONDAY:
-                    mDays.add("Mon");
-                    break;
-                case Calendar.TUESDAY:
-                    mDays.add("Tue");
-                    break;
-                case Calendar.WEDNESDAY:
-                    mDays.add("Wed");
-                    break;
-                case Calendar.THURSDAY:
-                    mDays.add("Thu");
-                    break;
-                case Calendar.FRIDAY:
-                    mDays.add("Fri");
-                    break;
-                case Calendar.SATURDAY:
-                    mDays.add("Sat");
-                    break;
-            }
+            String[] weekArr = {
+                    getString(R.string.day7s),getString(R.string.day1s),getString(R.string.day2s),getString(R.string.day3s),getString(R.string.day4s),getString(R.string.day5s),getString(R.string.day6s)
+            };
+            mDays.add(weekArr[nCalendar.get(Calendar.DAY_OF_WEEK) - 1]);
 
             // Planer for i dag
             mPlans.add("Intet planlagt");
@@ -115,80 +85,65 @@ public class MainActivity extends AppCompatActivity {
             //Incree med 1
             nCalendar.add(Calendar.DAY_OF_MONTH, +1);
         }
-
+        nCalendar.set(Calendar.YEAR, calThisDate.get(Calendar.YEAR));
         initRecyclerView();
     }
 
-    // Start på HTTP kald
-    public void startHttpReq(View view)
-    {
-        String thisURL = folderolURL + "";
-        makeHttpReq(thisURL);
-        // Min Url
-    }
-    public void httpCallback(String response)
-    {
-        // Response is HTTP Response
-
-        TextView thisView = findViewById(R.id.resultView);
-
-        thisView.setText(response);
-        // Not Used, saved for convenience
-    }
-
-    private void makeHttpReq(String url)
-    {
-        Log.d(TAG, "getHttpReq: Fired OkHttp Method");
 
 
-
-        Log.d(TAG, "getHttpReq: Building Client");
-        OkHttpClient client = new OkHttpClient();
-
-
-
-        Log.d(TAG, "getHttpReq: Building Request");
-        // Request as post in .add takes name and value
-        RequestBody formBody = new FormBody.Builder()
-                .add("thisispost", "mFirstPost")
-                .build();
-        Request request = new Request.Builder()
-                .url(url)
-                .post(formBody)
-                .build();
-
-
-        Log.d(TAG, "getHttpReq: Firing Call");
-        client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                Log.d(TAG, "getHttpReq: Failure");
-                e.printStackTrace();
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                Log.d(TAG, "getHttpReq: Response");
-                if(response.isSuccessful()){
-                    Log.d(TAG, "getHttpReq: Response successful");
-                    final String mResponse = response.body().string();
-                    MainActivity.this.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            httpCallback(mResponse);
-                        }
-                    });
-                }
-            }
-        });
-    }
-
+    // RecyclerView Init
     private void initRecyclerView()
     {
         Log.d(TAG, "initRecyclerView: Making View");
-        RecyclerView recyclerView = findViewById(R.id.recyclerv_view);
+        RecyclerView mRecyclerView = findViewById(R.id.recyclerv_view);
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(mDates, mDays, mPlans, this);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setAdapter(adapter);
+        final LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            int firstVisiblePosition;
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                firstVisiblePosition = mLayoutManager.findFirstCompletelyVisibleItemPosition();
+                nCalendar.set(Calendar.DAY_OF_YEAR, firstVisiblePosition+1);
+                // Måned
+                String[] monthArr = {
+                        getString(R.string.mon01),getString(R.string.mon02),getString(R.string.mon03),getString(R.string.mon04),
+                        getString(R.string.mon05), getString(R.string.mon06),getString(R.string.mon07),getString(R.string.mon08),
+                        getString(R.string.mon09),getString(R.string.mon10),getString(R.string.mon11),getString(R.string.mon12)
+                };
+
+                // Title som måned - år
+                setTitle(monthArr[nCalendar.get(Calendar.MONTH)] + " - " + nCalendar.get(Calendar.YEAR));
+                nCalendar.set(Calendar.DAY_OF_YEAR, firstVisiblePosition+1);
+                recHeader.setText(getString(R.string.week) + ": " + nCalendar.get(Calendar.WEEK_OF_YEAR));
+
+                if (dy > 0) {
+                    // Finger up, content down
+                    //recHeader.setText("Down");
+                } else {
+                    // Finger down, content up
+                    //recHeader.setText("Up");
+                }
+            }
+
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                firstVisiblePosition = mLayoutManager.findFirstCompletelyVisibleItemPosition();
+                if (newState == AbsListView.OnScrollListener.SCROLL_STATE_FLING) {
+                    // Stopped scrolling with momentum (a "flick")
+                    //recHeader.setText("Still moving");
+                } else if (newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
+                    // Scroll state in progress
+                    //recHeader.setText("Scrolling");
+                } else {
+                    // Scrolling done, record state
+                    //recHeader.setText("Scroll done");
+                }
+            }
+        });
     }
 }
