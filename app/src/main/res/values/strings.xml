@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Kalender</string>
+    <string name="day1">Monday</string>
+    <string name="day2">Tuesday</string>
+    <string name="day3">Wednesday</string>
+    <string name="day4">Thursday</string>
+    <string name="day5">Friday</string>
+    <string name="day6">Saturday</string>
+    <string name="day7">Sunday</string>
+
+    <string name="day1s">Mon</string>
+    <string name="day2s">Tue</string>
+    <string name="day3s">Wed</string>
+    <string name="day4s">Thu</string>
+    <string name="day5s">Fri</string>
+    <string name="day6s">Sat</string>
+    <string name="day7s">Sun</string>
+
+    <string name="day1ss">M</string>
+    <string name="day2ss">T</string>
+    <string name="day3ss">W</string>
+    <string name="day4ss">T</string>
+    <string name="day5ss">F</string>
+    <string name="day6ss">S</string>
+    <string name="day7ss">S</string>
+
+    <string name="dummyDate">01</string>
+    <string name="dummyWeek">Week Nr 1</string>
+    <string name="dummyContent">Intet planlagt</string>
+
+    <string name="drawerToggleOpen">Open</string>
+    <string name="drawerToggleClose">Close</string>
+</resources>
