@@ -2,17 +2,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/nav_account"
-        android:title="">
+        android:id="@+id/nav_event"
+        android:title="@string/menuAddEvent">
+    </item>
+
+    <item
+        android:id="@+id/nav_schedule"
+        android:title="@string/menuMySchedule">
     </item>
 
     <item
         android:id="@+id/nav_settings"
-        android:title="Settings">
+        android:title="@string/menuSettings">
     </item>
 
     <item
-        android:id="@+id/nav_quit"
-        android:title="Exit">
+        android:id="@+id/nav_exit"
+        android:title="@string/menuExit">
     </item>
 </menu>
