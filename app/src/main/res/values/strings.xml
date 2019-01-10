@@ -25,9 +25,25 @@
     <string name="day7ss">S</string>
 
     <string name="dummyDate">01</string>
-    <string name="dummyWeek">Week Nr 1</string>
-    <string name="dummyContent">Intet planlagt</string>
+    <string name="dummyWeek">Week: 1</string>
+    <string name="dummyContent">Nothing planned</string>
 
     <string name="drawerToggleOpen">Open</string>
     <string name="drawerToggleClose">Close</string>
+
+    <string name="mon01">Januar</string>
+    <string name="mon02">Februar</string>
+    <string name="mon03">Marts</string>
+    <string name="mon04">April</string>
+    <string name="mon05">Maj</string>
+    <string name="mon06">Juni</string>
+    <string name="mon07">Juli</string>
+    <string name="mon08">August</string>
+    <string name="mon09">September</string>
+    <string name="mon10">Oktober</string>
+    <string name="mon11">November</string>
+    <string name="mon12">December</string>
+    <string name="week">Week</string>
+
+
 </resources>
