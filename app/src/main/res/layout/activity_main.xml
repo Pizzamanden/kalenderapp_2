@@ -39,12 +39,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cal_header" />
 
+
+
     </android.support.constraint.ConstraintLayout>
 
     <android.support.design.widget.NavigationView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:menu="@menu/navigation_menu"
+        android:id="@+id/drawer_nav_view"
         android:layout_gravity="start"/>
 
 </android.support.v4.widget.DrawerLayout>

@@ -1,56 +1,73 @@
 <resources>
     <string name="app_name">Kalender</string>
-    <string name="day1">Monday</string>
-    <string name="day2">Tuesday</string>
-    <string name="day3">Wednesday</string>
-    <string name="day4">Thursday</string>
-    <string name="day5">Friday</string>
-    <string name="day6">Saturday</string>
-    <string name="day7">Sunday</string>
 
-    <string name="day1s">Mon</string>
-    <string name="day2s">Tue</string>
-    <string name="day3s">Wed</string>
-    <string name="day4s">Thu</string>
-    <string name="day5s">Fri</string>
-    <string name="day6s">Sat</string>
-    <string name="day7s">Sun</string>
+    <string-array name="weekDays">
+        <item>Sunday</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+    </string-array>
 
-    <string name="day1ss">M</string>
-    <string name="day2ss">T</string>
-    <string name="day3ss">W</string>
-    <string name="day4ss">T</string>
-    <string name="day5ss">F</string>
-    <string name="day6ss">S</string>
-    <string name="day7ss">S</string>
+    <string-array name="weekDaysS">
+        <item>Sun</item>
+        <item>Mon</item>
+        <item>Tue</item>
+        <item>Wed</item>
+        <item>Thu</item>
+        <item>Fri</item>
+        <item>Sat</item>
+    </string-array>
+
+    <string-array name="weekDaysSS">
+        <item>S</item>
+        <item>M</item>
+        <item>T</item>
+        <item>W</item>
+        <item>T</item>
+        <item>F</item>
+        <item>S</item>
+    </string-array>
+
+    <string-array name="months">
+        <item>Januar</item>
+        <item>Februar</item>
+        <item>Marts</item>
+        <item>April</item>
+        <item>Maj</item>
+        <item>Juni</item>
+        <item>Juli</item>
+        <item>August</item>
+        <item>September</item>
+        <item>Oktober</item>
+        <item>November</item>
+        <item>December</item>
+    </string-array>
 
     <string name="dummyDate">01</string>
+    <string name="dummyWeekDay">Mon</string>
     <string name="dummyWeek">Week: 1</string>
     <string name="dummyContent">Nothing planned</string>
 
     <string name="drawerToggleOpen">Open</string>
     <string name="drawerToggleClose">Close</string>
 
-    <string name="mon01">Januar</string>
-    <string name="mon02">Februar</string>
-    <string name="mon03">Marts</string>
-    <string name="mon04">April</string>
-    <string name="mon05">Maj</string>
-    <string name="mon06">Juni</string>
-    <string name="mon07">Juli</string>
-    <string name="mon08">August</string>
-    <string name="mon09">September</string>
-    <string name="mon10">Oktober</string>
-    <string name="mon11">November</string>
-    <string name="mon12">December</string>
-    <string name="week">Week</string>
-
+    <string name="week_word">Week</string>
 
     <string name="menuAddEvent">Add Event</string>
     <string name="menuMySchedule">See Events</string>
     <string name="menuSettings">Settings</string>
     <string name="menuExit">Exit</string>
-    <string name="title_activity_settings">Settings</string>
+
+    <string name="settingsTitle">Settings</string>
+    <string name="addEventTitle">Add Event</string>
+    <string name="seeEventsTitle">Current Events</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="exitDLMSG">Do you want to exit?</string>
+    <string name="exitDLTTL">Exit Application</string>
 
     <!-- Strings related to Settings -->
 
@@ -123,6 +140,5 @@
     <string name="pref_ringtone_silent">Silent</string>
 
     <string name="pref_title_vibrate">Vibrate</string>
-    <string name="addEventTitle">Add Event</string>
 
 </resources>

@@ -38,7 +38,7 @@
         android:layout_marginStart="16dp"
         android:paddingBottom="0dp"
         android:minWidth="50dp"
-        android:text="@string/day1s"
+        android:text="@string/week_word"
         android:textSize="22sp"
         app:fontFamily="@font/roboto_thin"
         android:layout_toRightOf="@+id/textView_date"
