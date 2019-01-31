@@ -1,16 +1,183 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AddEvent">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="39dp"
-        tools:layout_editor_absoluteY="42dp" />
-</android.support.constraint.ConstraintLayout>
+    <ScrollView
+        android:id="@+id/scrollview_contentroot"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/textView_datename"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/addEvent_eventname"
+                android:layout_marginTop="8dp"
+                android:textSize="22sp"
+                android:textColor="#333"/>
+
+            <EditText
+                android:id="@+id/editText_datename"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="32dp"
+                android:hint="@string/addEvent_PH_name" />
+
+            <TextView
+                android:id="@+id/textView_datestart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/addEvent_startdate"
+                android:textSize="22sp"
+                android:textColor="#333"/>
+
+            <EditText
+                android:id="@+id/editText_datestart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="32dp"
+                android:ems="10"
+                android:hint="@string/addEvent_PH_startdate"
+                android:inputType="date" />
+
+            <TextView
+                android:id="@+id/textView_dateend"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/addEvent_enddate"
+                android:textSize="22sp"
+                android:textColor="#333"/>
+
+            <EditText
+                android:id="@+id/editText_dateend"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="32dp"
+                android:ems="10"
+                android:hint="@string/addEvent_PH_enddate"
+                android:inputType="date" />
+
+            <TextView
+                android:id="@+id/textView_datetype"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/addEvent_eventtype"
+                android:textSize="22sp"
+                android:textColor="#333"/>
+
+            <Spinner
+                android:id="@+id/spinner_eventtype"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Widget.AppCompat.Spinner.Underlined"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="32dp"
+                android:spinnerMode="dialog" />
+
+
+            <Switch
+                android:id="@+id/switch_setalarm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/addEvent_setalarm"
+                android:textSize="22sp"/>
+
+            <EditText
+                android:id="@+id/editText_alarmtime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="32dp"
+                android:ems="10"
+                android:hint="@string/addEvent_PH_alarm"
+                android:inputType="time" />
+        </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginLeft="2dp">
+
+                    <Button
+                        android:id="@+id/button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="buttonCancel"
+                        android:text="Cancel"
+                        android:textColor="#eeeeee"
+                        tools:background="@color/colorPrimaryDark" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="2dp"
+                    android:layout_marginRight="2dp">
+
+                    <Button
+                        android:id="@+id/button2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="buttonConfirm"
+                        android:text="Done"
+                        android:textColor="#eeeeee"
+                        tools:background="@color/colorPrimaryDark" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+    <RelativeLayout
+        android:id="@+id/loadingPanel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true" />
+    </RelativeLayout>
+
+</RelativeLayout>
