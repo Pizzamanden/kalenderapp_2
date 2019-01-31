@@ -141,4 +141,25 @@
 
     <string name="pref_title_vibrate">Vibrate</string>
 
+
+
+    <string name="addEvent_activitytitle">Add a new event</string>
+    <string name="addEvent_eventname">Name of event</string>
+    <string name="addEvent_startdate">Start date</string>
+    <string name="addEvent_enddate">End date</string>
+    <string name="addEvent_eventtype">Event type</string>
+    <string name="addEvent_setalarm">Set alarm</string>
+    <string name="addEvent_PH_name">Name</string>
+    <string name="addEvent_PH_startdate">Date of start</string>
+    <string name="addEvent_PH_enddate">Date of end</string>
+    <string name="addEvent_PH_eventtype">Event type</string>
+    <string name="addEvent_PH_alarm">Time before</string>
+
+
+
+    <string-array name="addevent_eventtypes">
+        <item>Sport</item>
+        <item>Not sport</item>
+    </string-array>
+
 </resources>
