@@ -175,7 +175,6 @@ public class MainActivity extends AppCompatActivity {
         // Antal dato'er der skal laves i kalenderen
         int antal = 365;
         for(int i = 1; i <= antal; i++){
-            // TODO find out if while or for
             // Dato
             mDates.add(nCalendar.get(Calendar.DATE) + "");
 
